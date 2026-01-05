@@ -1,17 +1,33 @@
 # Airflow Dynamic Loader
 
-## Description
 **Airflow Dynamic Loader** is a full-featured Airflow project that automates loading data from multiple APIs into a DuckDB warehouse.
 
 It includes:
-- Dynamic configuration of endpoints (`states` and `flights`)
-- Fetching, transforming, and saving API data as JSON
-- Conditional loading strategy based on dataset size (direct insert or file-based load)
-- Automatic creation of DuckDB tables with appropriate schema
-- Data quality verification (row counts and duplicates)
-- Full Airflow DAG orchestration with task groups and branching
 
-This project demonstrates **end-to-end data ingestion**, **Airflow branching**, and **data validation** for real-time API sources.
+- Dynamic configuration of endpoints (states and flights)  
+- Fetching, transforming, and saving API data as JSON  
+- Conditional loading strategy based on dataset size (direct insert or file-based load)  
+- Automatic creation of DuckDB tables with appropriate schema  
+- Data quality verification (row counts and duplicates)  
+- Full Airflow DAG orchestration with task groups and branching  
+
+This project demonstrates end-to-end data ingestion, Airflow branching, and data validation for **real-time API sources**, specifically from **OpenSky Network**.
+
+
+
+## OpenSky Network API
+
+This project integrates with the **[OpenSky Network API](https://opensky-network.org/apidoc/)**, which provides live and historical air traffic data:
+
+- **States endpoint** (`/api/states/all`):  
+  Returns real-time information about all aircraft currently in the air, including ICAO24, callsign, origin country, position, altitude, velocity, and track.
+
+- **Flights endpoint** (`/api/flights/all`):  
+  Provides flight history within a given time window, including departure/arrival airports, flight timestamps, distance from airports, and candidate airports for departure and arrival.
+
+The DAG handles both endpoints dynamically, fetching data, transforming it into a structured format, and storing it in DuckDB. Below the DAG diagram, the image illustrates the workflow of the pipeline, showing the start and end tasks, the branching logic based on dataset size, the data fetching and transformation steps, and the data quality checks.
+
+![DAG Diagram](dag)
 
 ## Features
 - **Multiple endpoints:** supports OpenSky `states` and `flights` APIs
