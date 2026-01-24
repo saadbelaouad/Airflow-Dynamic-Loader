@@ -1,6 +1,7 @@
-# Airflow Dynamic Loader
+# Airflow_dynamic_api_ingestion
 
-**Airflow Dynamic Loader** is a full-featured Airflow project that automates loading data from multiple APIs into a DuckDB warehouse.
+
+**Airflow_dynamic_api_ingestion** is a full-featured Airflow project that automates loading data from multiple APIs into a DuckDB warehouse.
 
 It includes:
 
